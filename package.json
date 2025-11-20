@@ -37,6 +37,8 @@
   "clean": "rimraf ./dist",
   "watch": "tsc --watch",
   "prepublishOnly": "npm run build",
+  
+  "build:ci": "npm run clean && tsc && rollup -c rollup.config.js"
 
 },
   "devDependencies": {
