@@ -12,14 +12,14 @@
     "ios/",
     "CapacitorChromecast.podspec"
   ],
-  "author": "Your Name",
+  "author": "Evgueni",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/capacitor-chromecast.git"
+    "url": "https://github.com/soundwave12345/capacitor-chromecast.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/capacitor-chromecast/issues"
+    "url": "https://github.com/soundwave12345/capacitor-chromecast/issues"
   },
   "keywords": [
     "capacitor",
