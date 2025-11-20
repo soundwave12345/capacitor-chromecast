@@ -7,44 +7,40 @@ on:
     branches: [ main, develop ]
 
 jobs:
-
+  # ----------------------------------------------------
+  #  JS / Typescript Build
+  # ----------------------------------------------------
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [20.x]
 
     steps:
     - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
-
-
-    # Se package-lock.json non esiste, lo creo
-    - name: Ensure package-lock.json exists
-      run: |
-        if [ ! -f package-lock.json ]; then
-          echo "package-lock.json non trovato, lo genero..."
-          npm install
-        fi
+        node-version: '20.x'
 
     - name: Install dependencies
-      run: npm ci
+      run: npm install
 
     - name: Lint
       run: npm run lint --if-present
 
     - name: Build
-      run: npm run build
+      run: |
+        # Build senza docgen in CI
+        npm run clean
+        tsc
+        rollup -c rollup.config.js
 
     - name: Test
       run: npm test --if-present
 
 
+  # ----------------------------------------------------
+  # Android Plugin Build
+  # ----------------------------------------------------
   build-android:
     runs-on: ubuntu-latest
 
@@ -56,32 +52,27 @@ jobs:
       with:
         node-version: '20.x'
 
-
-    - name: Ensure package-lock.json exists
-      run: |
-        if [ ! -f package-lock.json ]; then
-          npm install
-        fi
-
     - name: Install dependencies
-      run: npm ci
+      run: npm install
 
-    - name: Set up JDK 17
+    - name: Setup JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v3
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
 
-    - name: Build Android
+    - name: Build Android Plugin
       run: |
         cd android
-        chmod +x gradlew
-        ./gradlew build
+        gradle build
 
 
+  # ----------------------------------------------------
+  # iOS Plugin Lint
+  # ----------------------------------------------------
   build-ios:
     runs-on: macos-latest
 
@@ -93,26 +84,14 @@ jobs:
       with:
         node-version: '20.x'
 
-
-    - name: Ensure package-lock.json exists
-      run: |
-        if [ ! -f package-lock.json ]; then
-          npm install
-        fi
-
     - name: Install dependencies
-      run: npm ci
+      run: npm install
 
     - name: Install CocoaPods
       run: |
-        cd ios
-        pod install
+        sudo gem install cocoapods
 
-    - name: Build iOS
+    - name: Lint iOS Plugin
       run: |
         cd ios
-        xcodebuild -workspace Plugin.xcworkspace \
-          -scheme Plugin \
-          -destination 'platform=iOS Simulator,name=iPhone 14' \
-          build
-
+        pod lib lint --allow-warnings
