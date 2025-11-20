@@ -1,0 +1,59 @@
+ext {
+    javaVersion = JavaVersion.VERSION_17
+    androidxAppCompatVersion = '1.6.1'
+    androidxCoreVersion = '1.12.0'
+    playServicesCastFrameworkVersion = '21.4.0'
+}
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    namespace "com.yourcompany.chromecast"
+    compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 34
+    defaultConfig {
+        minSdk project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 22
+        targetSdk project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 34
+        versionCode 1
+        versionName "1.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':capacitor-android')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
+    implementation "com.google.android.gms:play-services-cast-framework:$playServicesCastFrameworkVersion"
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
