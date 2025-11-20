@@ -37,8 +37,7 @@
   "clean": "rimraf ./dist",
   "watch": "tsc --watch",
   "prepublishOnly": "npm run build",
-  "docgen": "docgen --api ChromecastPlugin --output-readme README.md --output-json dist/docs.json",
-  "build:ci": "npm run clean && tsc && rollup -c rollup.config.js"
+
 },
   "devDependencies": {
     "@capacitor/android": "^6.0.0",
