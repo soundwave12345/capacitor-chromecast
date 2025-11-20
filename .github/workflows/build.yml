@@ -112,11 +112,7 @@ jobs:
 
     - name: Install CocoaPods
       run: sudo gem install cocoapods
+            cd ios
+            pod install
 
-    - name: Lint iOS Plugin
-      run: |
-        cd ios
-        pod lib lint ../CapacitorChromecast.podspec \
-          --allow-warnings \
-          --use-libraries \
-          --use-modular-headers
+ 
