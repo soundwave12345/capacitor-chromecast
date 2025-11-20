@@ -113,7 +113,6 @@ jobs:
     - name: Install CocoaPods
       run: |
           sudo gem install cocoapods
-          cd ios
-          pod install
+          pod install --project-directory=ios || true
 
  
