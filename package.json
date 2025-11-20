@@ -28,17 +28,18 @@
     "cast",
     "native"
   ],
-  "scripts": {
-    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
-    "verify:android": "cd android && ./gradlew clean build test && cd ..",
-    "verify:web": "npm run build",
-    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
-    "clean": "rimraf ./dist",
-    "watch": "tsc --watch",
-    "prepublishOnly": "npm run build",
-    "docgen": "docgen --api ChromecastPlugin --output-readme README.md --output-json dist/docs.json"
-  },
+"scripts": {
+  "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+  "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
+  "verify:web": "npm run build",
+
+  "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
+  "clean": "rimraf ./dist",
+  "watch": "tsc --watch",
+  "prepublishOnly": "npm run build",
+  "docgen": "docgen --api ChromecastPlugin --output-readme README.md --output-json dist/docs.json",
+  "build:ci": "npm run clean && tsc && rollup -c rollup.config.js"
+},
   "devDependencies": {
     "@capacitor/android": "^6.0.0",
     "@capacitor/core": "^6.0.0",
