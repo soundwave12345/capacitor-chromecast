@@ -111,8 +111,9 @@ jobs:
       run: npm ci
 
     - name: Install CocoaPods
-      run: sudo gem install cocoapods
-            cd ios
-            pod install
+      run: |
+          sudo gem install cocoapods
+          cd ios
+          pod install
 
  
