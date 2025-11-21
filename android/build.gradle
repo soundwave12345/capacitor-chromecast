@@ -9,7 +9,7 @@ repositories {
 }
 
 android {
-    namespace "com.example.chromecast"
+    namespace "com.example.capacitorchromecast"
     compileSdk 34
 
     defaultConfig {
