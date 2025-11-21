@@ -101,7 +101,11 @@ class ChromecastPlugin : Plugin() {
             return
         }
 
-        val options = MediaLoadOptions.Builder().setAutoplay(true).build()
+        val options = MediaLoadOptions.Builder()
+            .setAutoplay(true)
+            .build()
+        remoteMediaClient.load(mediaInfo, options) // ora Kotlin sa che è MediaLoadOptions
+
         remoteClient.load(mediaInfo, options)
         val out = JSObject()
         out.put("success", true)
