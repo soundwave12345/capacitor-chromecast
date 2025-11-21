@@ -7,6 +7,7 @@ repositories {
     google()
     mavenCentral()
 }
+
 android {
     namespace "com.example.chromecast"
     compileSdk 34
@@ -18,28 +19,25 @@ android {
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-        }
-        debug {
-            minifyEnabled false
-        }
-    }
-    kotlinOptions {
-        jvmTarget = "17"
+        release { minifyEnabled false }
+        debug { minifyEnabled false }
     }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
     implementation 'com.google.android.gms:play-services-cast:21.2.0'
     implementation 'com.google.android.gms:play-services-cast-framework:21.2.0'
-
     implementation "androidx.core:core-ktx:1.12.0"
     implementation "androidx.appcompat:appcompat:1.6.1"
+
     implementation project(':capacitor-android')
 }
