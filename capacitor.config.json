@@ -1,0 +1,9 @@
+{
+"name": "capacitor-chromecast-android",
+"version": "0.1.0",
+"plugins": {
+"Chromecast": {
+"description": "Android-only Chromecast plugin"
+}
+}
+}
