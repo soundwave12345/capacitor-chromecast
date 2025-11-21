@@ -1,17 +1,32 @@
-buildscript {
-repositories {
-google()
-mavenCentral()
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
+
+android {
+    namespace "com.example.chromecast"
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+}
+
 dependencies {
-classpath 'com.android.tools.build:gradle:8.0.2'
-}
-}
+    implementation 'com.google.android.gms:play-services-cast:21.0.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:21.0.0'
 
-
-allprojects {
-repositories {
-google()
-mavenCentral()
-}
+    implementation "androidx.core:core-ktx:1.12.0"
+    implementation "androidx.appcompat:appcompat:1.6.1"
 }
