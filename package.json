@@ -1,6 +1,6 @@
 {
   "name": "capacitor-chromecast-android",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Capacitor plugin (Android only) to cast media to Chromecast devices.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
