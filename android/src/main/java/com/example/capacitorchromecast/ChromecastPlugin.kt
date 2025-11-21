@@ -21,6 +21,8 @@ class ChromecastPlugin : Plugin(), SessionManagerListener<CastSession> {
     }
 
     // --- SessionManagerListener overrides ---
+    override fun onSessionStarting(session: CastSession) {}
+    
     override fun onSessionStarted(session: CastSession, sessionId: String) {
         castSession = session
     }
