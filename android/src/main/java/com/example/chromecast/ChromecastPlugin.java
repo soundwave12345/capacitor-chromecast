@@ -14,7 +14,7 @@ import com.google.android.gms.cast.framework.SessionManager;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.cast.MediaLoadRequestData;
 
-@CapacitorPlugin(name = "ChromecastPlugin")
+@CapacitorPlugin(name = "Chromecast")
 public class ChromecastPlugin extends Plugin {
 
     private CastContext castContext;
