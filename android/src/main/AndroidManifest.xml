@@ -1,8 +1,20 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.example.chromecast"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
 
-<uses-permission android:name="android.permission.INTERNET" />
+        <!-- ID applicazione Chromecast (va sostituito con il tuo) -->
+        <meta-data
+            android:name="com.google.android.gms.cast.APPLICATION_ID"
+            android:value="CC1AD845" />
 
+        <!-- Necessario per il framework Chromecast -->
+        <provider
+            android:name="com.google.android.gms.cast.framework.media.MediaRouteProvider"
+            android:authorities="${applicationId}.cast_mrp"
+            android:exported="false">
+        </provider>
 
-<application />
+    </application>
 </manifest>
