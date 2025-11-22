@@ -1,19 +1,15 @@
 {
-  "name": "capacitor-chromecast-android",
-  "version": "0.1.12",
+  "name": "my-chromecast-plugin",
+  "version": "1.0.0",
   "description": "Chromecast plugin for Capacitor 6",
-  "main": "dist/plugin.js",
-  "types": "dist/definitions.d.ts",
+  "main": "plugin/src/index.ts",
+  "author": "Tu",
+  "license": "MIT",
   "files": [
-    "dist/",
-    "android/"
+    "android/",
+    "plugin/"
   ],
-  "scripts": {
-    "build": "tsc"
-  },
-  "capacitor": {
-    "android": {
-      "src": "android"
-    }
+  "peerDependencies": {
+    "@capacitor/core": "^6.0.0"
   }
 }
