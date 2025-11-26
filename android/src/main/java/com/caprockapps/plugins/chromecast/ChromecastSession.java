@@ -194,7 +194,6 @@ public class ChromecastSession {
             }
         });
     }
-    }
     
     public void next() {
         if (client == null || session == null) {
