@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.util.Log;
 
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
@@ -33,6 +34,7 @@ import androidx.annotation.NonNull;
  * All of the Chromecast session specific functions should start here.
  */
 public class ChromecastSession {
+    private static final String TAG = "Chromecast";
     /** The current context. */
     private Activity activity;
     /** A registered callback that we will un-register and re-register each time the session changes. */
@@ -167,7 +169,7 @@ public class ChromecastSession {
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 try {
-                    client.pause(time);
+                    client.pause();
                 } catch (Exception e) {
                     Log.e(TAG, "Seek error: " + e.getMessage(), e);
                 }    
