@@ -1290,6 +1290,15 @@ public class Chromecast extends Plugin {
     }
     @PluginMethod
     public void mediaPause(PluginCall call) {
+        JSObject returnObj = new JSObject();
+        returnObj.put("success",false);
+        //If we don't have a session here we need to try and get it
+        if(this.media == null) this.media = connection.getChromecastSession();
+        //If we still don't have a session we can't call sendMessage return false;
+        if(this.media == null){
+            pluginCall.resolve(returnObj);
+            return false;
+        }
         this.media = connection.getChromecastSession();
         this.media.pause();
         call.resolve();
@@ -1297,6 +1306,15 @@ public class Chromecast extends Plugin {
     
     @PluginMethod
     public void mediaPlay(PluginCall call) {
+        JSObject returnObj = new JSObject();
+        returnObj.put("success",false);
+        //If we don't have a session here we need to try and get it
+        if(this.media == null) this.media = connection.getChromecastSession();
+        //If we still don't have a session we can't call sendMessage return false;
+        if(this.media == null){
+            pluginCall.resolve(returnObj);
+            return false;
+        }
         this.media = connection.getChromecastSession();
         
         this.media.play();
@@ -1304,6 +1322,15 @@ public class Chromecast extends Plugin {
     }
     @PluginMethod
     public void mediaSeek(PluginCall call) {
+        JSObject returnObj = new JSObject();
+        returnObj.put("success",false);
+        //If we don't have a session here we need to try and get it
+        if(this.media == null) this.media = connection.getChromecastSession();
+        //If we still don't have a session we can't call sendMessage return false;
+        if(this.media == null){
+            pluginCall.resolve(returnObj);
+            return false;
+        }
         int position = call.getInt("position", 0);
         this.media = connection.getChromecastSession();
         this.media.seek(position);
