@@ -159,6 +159,25 @@ public class ChromecastSession {
             }
         });
     }
+    public void pause() {
+        RemoteMediaClient client = getRemoteMediaClient();
+        if (client != null) client.pause();
+    }
+    
+    public void play() {
+        RemoteMediaClient client = getRemoteMediaClient();
+        if (client != null) client.play();
+    }
+    
+    public void next() {
+        RemoteMediaClient client = getRemoteMediaClient();
+        if (client != null) client.queueNext(null);
+    }
+    
+    public void previous() {
+        RemoteMediaClient client = getRemoteMediaClient();
+        if (client != null) client.queuePrevious(null);
+    }
 
     /**
      * Adds a message listener if one does not already exist.
