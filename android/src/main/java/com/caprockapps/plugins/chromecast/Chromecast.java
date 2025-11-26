@@ -1311,8 +1311,7 @@ public class Chromecast extends Plugin {
         if(this.media == null) this.media = connection.getChromecastSession();
         //If we still don't have a session we can't call sendMessage return false;
         if(this.media == null){
-            pluginCall.resolve(returnObj);
-            return false;
+            Log.d(TAG, "mediaPlay Session Not Found");
         }
         this.media = connection.getChromecastSession();
         
