@@ -174,11 +174,11 @@ public class ChromecastSession {
         //RemoteMediaClient client = getRemoteMediaClient();
         if (client != null) client.queueNext(null);
     }
-    
+/*    
     public void previous() {
         //RemoteMediaClient client = getRemoteMediaClient();
         if (client != null) client.queuePrevious(null);
-    }
+    }*/
     public void seek(int position) {
         //RemoteMediaClient client = getRemoteMediaClient();
         if(client != null) client.seek(position);
