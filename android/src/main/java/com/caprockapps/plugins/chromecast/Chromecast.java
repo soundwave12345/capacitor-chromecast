@@ -1302,7 +1302,7 @@ public class Chromecast extends Plugin {
         this.media.pause();
         call.resolve();
     }
-    /*
+    
     @PluginMethod
     public void mediaPlay(PluginCall call) {
         JSObject returnObj = new JSObject();
@@ -1319,7 +1319,7 @@ public class Chromecast extends Plugin {
         this.media.play();
         call.resolve();
     }
-    */
+    
     @PluginMethod
     public void mediaSeek(PluginCall call) {
         JSObject returnObj = new JSObject();
