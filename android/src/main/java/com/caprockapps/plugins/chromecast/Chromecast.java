@@ -1288,4 +1288,22 @@ public class Chromecast extends Plugin {
             pluginCall.reject("Failed to load media: " + e.getMessage());
         }
     }
+    @PluginMethod
+    public void mediaPause(PluginCall call) {
+        pause();
+        call.resolve();
+    }
+    
+    @PluginMethod
+    public void mediaPlay(PluginCall call) {
+        play();
+        call.resolve();
+    }
+    @PluginMethod
+    public void mediaSeek(PluginCall call) {
+        long position = call.getInt("position", 0);
+        RemoteMediaClient client = getMediaClient();
+        if(client != null) client.seek(position);
+        call.resolve();
+    }
 }
