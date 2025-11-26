@@ -1290,19 +1290,19 @@ public class Chromecast extends Plugin {
     }
     @PluginMethod
     public void mediaPause(PluginCall call) {
-        pause();
+        media.pause();
         call.resolve();
     }
     
     @PluginMethod
     public void mediaPlay(PluginCall call) {
-        play();
+        media.play();
         call.resolve();
     }
     @PluginMethod
     public void mediaSeek(PluginCall call) {
         int position = call.getInt("position", 0);
-        seek(position);
+        media.seek(position);
         //if(client != null) client.seek(position);
         call.resolve();
     }
