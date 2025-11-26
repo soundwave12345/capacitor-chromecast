@@ -179,11 +179,39 @@ public class ChromecastSession {
     }
     
     public void play() {
-        //RemoteMediaClient client = getRemoteMediaClient();
-        if (client != null) client.play();
+        if (client == null || session == null) {
+            //callback.error("session_error");
+            return;
+        }
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    client.play();
+                } catch (Exception e) {
+                    Log.e(TAG, "Seek error: " + e.getMessage(), e);
+                }    
+
+            }
+        });
+    }
     }
     
     public void next() {
+        if (client == null || session == null) {
+            //callback.error("session_error");
+            return;
+        }
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    client.queueNext(null);
+                } catch (Exception e) {
+                    Log.e(TAG, "Seek error: " + e.getMessage(), e);
+                }    
+
+            }
+        });
+    }
         //RemoteMediaClient client = getRemoteMediaClient();
         if (client != null) client.queueNext(null);
     }
