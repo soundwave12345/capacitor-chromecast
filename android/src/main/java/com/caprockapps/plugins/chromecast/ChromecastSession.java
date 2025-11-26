@@ -160,9 +160,20 @@ public class ChromecastSession {
         });
     }
     public void pause() {
-        
-        //RemoteMediaClient client = getRemoteMediaClient();
-        if (client != null) client.pause();
+        if (client == null || session == null) {
+            //callback.error("session_error");
+            return;
+        }
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    client.pause(time);
+                } catch (Exception e) {
+                    Log.e(TAG, "Seek error: " + e.getMessage(), e);
+                }    
+
+            }
+        });
     }
     
     public void play() {
@@ -180,8 +191,20 @@ public class ChromecastSession {
         if (client != null) client.queuePrevious(null);
     }*/
     public void seek(int position) {
-        //RemoteMediaClient client = getRemoteMediaClient();
-        if(client != null) client.seek(position);
+        if (client == null || session == null) {
+            //callback.error("session_error");
+            return;
+        }
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    client.seek(position);
+                } catch (Exception e) {
+                    Log.e(TAG, "Seek error: " + e.getMessage(), e);
+                }    
+
+            }
+        });
     }
 
     /**
