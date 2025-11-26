@@ -1301,9 +1301,9 @@ public class Chromecast extends Plugin {
     }
     @PluginMethod
     public void mediaSeek(PluginCall call) {
-        long position = call.getInt("position", 0);
-        RemoteMediaClient client = getMediaClient();
-        if(client != null) client.seek(position);
+        int position = call.getInt("position", 0);
+        seek(position);
+        //if(client != null) client.seek(position);
         call.resolve();
     }
 }
