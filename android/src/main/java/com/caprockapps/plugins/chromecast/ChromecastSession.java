@@ -228,22 +228,30 @@ public class ChromecastSession {
         });
     }
 
-    public void seek(int position) {
+    public void seek(long positionMs) {
         if (client == null || session == null) {
-            //callback.error("session_error");
+            Log.e(TAG, "Seek failed: no client or session");
             return;
         }
+    
         activity.runOnUiThread(new Runnable() {
+            @Override
             public void run() {
                 try {
-                    client.seek(position);
+                    MediaSeekOptions options = new MediaSeekOptions.Builder()
+                            .setPosition(positionMs) 
+                            .setResumeState(MediaSeekOptions.RESUME_STATE_UNCHANGED)
+                            .build();
+    
+                    client.seek(options);
+    
                 } catch (Exception e) {
                     Log.e(TAG, "Seek error: " + e.getMessage(), e);
-                }    
-
+                }
             }
         });
     }
+
 
     /**
      * Adds a message listener if one does not already exist.
