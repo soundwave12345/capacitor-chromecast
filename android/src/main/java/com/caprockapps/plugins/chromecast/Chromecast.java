@@ -1329,7 +1329,7 @@ public class Chromecast extends Plugin {
         if(this.media == null){
             Log.d(TAG, "mediaSeek Session Not Found");
         }
-        int position = call.getInt("position", 0);
+        long position = call.getInt("position", 0);
         this.media = connection.getChromecastSession();
         this.media.seek(position);
         //if(client != null) client.seek(position);
