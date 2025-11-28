@@ -211,11 +211,23 @@ public class ChromecastSession {
             }
         });
     }
-/*    
-    public void previous() {
-        //RemoteMediaClient client = getRemoteMediaClient();
-        if (client != null) client.queuePrevious(null);
-    }*/
+    public void prev() {
+        if (client == null || session == null) {
+            //callback.error("session_error");
+            return;
+        }
+        activity.runOnUiThread(new Runnable() {
+            public void run() {
+                try {
+                    client.queuePrev(null);
+                } catch (Exception e) {
+                    Log.e(TAG, "Seek error: " + e.getMessage(), e);
+                }    
+
+            }
+        });
+    }
+
     public void seek(int position) {
         if (client == null || session == null) {
             //callback.error("session_error");
