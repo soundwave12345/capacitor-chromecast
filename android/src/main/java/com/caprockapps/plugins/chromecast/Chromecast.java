@@ -1335,4 +1335,32 @@ public class Chromecast extends Plugin {
         //if(client != null) client.seek(position);
         call.resolve();
     }
+    public void mediaNext(PluginCall call) {
+        JSObject returnObj = new JSObject();
+        returnObj.put("success",false);
+        //If we don't have a session here we need to try and get it
+        if(this.media == null) this.media = connection.getChromecastSession();
+        //If we still don't have a session we can't call sendMessage return false;
+        if(this.media == null){
+            Log.d(TAG, "mediaNext Session Not Found");
+        }
+        this.media = connection.getChromecastSession();
+        
+        this.media.next();
+        call.resolve();
+    }
+    public void mediaPrev(PluginCall call) {
+        JSObject returnObj = new JSObject();
+        returnObj.put("success",false);
+        //If we don't have a session here we need to try and get it
+        if(this.media == null) this.media = connection.getChromecastSession();
+        //If we still don't have a session we can't call sendMessage return false;
+        if(this.media == null){
+            Log.d(TAG, "mediaPrev Session Not Found");
+        }
+        this.media = connection.getChromecastSession();
+        
+        this.media.prev();
+        call.resolve();
+    }
 }
