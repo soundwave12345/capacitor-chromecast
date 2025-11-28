@@ -238,6 +238,7 @@ public class ChromecastSession {
             @Override
             public void run() {
                 try {
+                    Log.d(TAG, "Seek position LOG: " + positionMs);
                     MediaSeekOptions options = new MediaSeekOptions.Builder()
                             .setPosition(positionMs) 
                             .setResumeState(MediaSeekOptions.RESUME_STATE_UNCHANGED)
