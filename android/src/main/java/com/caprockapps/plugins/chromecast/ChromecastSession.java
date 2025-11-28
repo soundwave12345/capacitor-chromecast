@@ -224,7 +224,7 @@ public class ChromecastSession {
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 try {
-                    client.seek(position);
+                    client.seek(position*1000);
                 } catch (Exception e) {
                     Log.e(TAG, "Seek error: " + e.getMessage(), e);
                 }    
